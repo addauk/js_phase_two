@@ -1,0 +1,24 @@
+// file: pokedex.test.js
+
+const Pokedex = require("./pokedex");
+
+describe("Pokedex", () => {
+  it("constructs", () => {
+    const dex = new Pokedex();
+    expect(dex.pokemons).toEqual([]);
+  });
+  it("can add new pokemon to the pokedex", async () => {
+    const dex = new Pokedex();
+    await dex.catch('pikachu');
+    expect(dex.pokemons.length).toEqual(1);
+  });
+  xit("can add multiple pokemon to the pokedex", async () => {
+    const dex = new Pokedex();
+    await dex.catch('pikachu');
+    await dex.catch('jigglypuff');
+    expect(dex.pokemons.length).toEqual(2);
+  });
+  xit("can get all pokemon in the pokedex", () => {
+
+  });
+});

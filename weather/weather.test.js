@@ -22,4 +22,23 @@ describe("Weather", () => {
     const weatherData = weather.getWeatherData();
     expect(weatherData.name).toEqual("London");
   });
+  it("fetches multiple weather data but only provides the latest", async () => {
+    const mockClient = {
+      fetchWeatherData: jest
+        .fn()
+        .mockResolvedValueOnce({
+          name: "London",
+        })
+        .mockResolvedValueOnce({
+          name: "Tokyo",
+        }),
+    };
+    const weather = new Weather(mockClient);
+    await weather.load("London");
+    expect(mockClient.fetchWeatherData).toHaveBeenCalledWith("London");
+    await weather.load("Tokyo");
+    expect(mockClient.fetchWeatherData).toHaveBeenCalledWith("Tokyo");
+    const weatherData = weather.getWeatherData();
+    expect(weatherData.name).toEqual("Tokyo");
+  });
 });

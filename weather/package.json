@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "callback-fetch": "^0.0.1"
+    "callback-fetch": "^0.0.1",
+    "jest-fetch-mock": "^3.0.3"
   }
 }
